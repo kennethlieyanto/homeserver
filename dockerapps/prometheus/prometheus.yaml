@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 30s
+scrape_configs:
+  scrape_configs:
+  - job_name: minio-job
+    bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwcm9tZXRoZXVzIiwic3ViIjoibWluaW9hZG1pbiIsImV4cCI6NDkxMzQ5Njk1MX0.u0NVVIPIabvv-JRbfAz2kLGfh-YZtt1Wkm7Ip9x83c4CzFult1Ouj3kxHl0tFUcv-JREhrYx_SZgzjnjmL8L1g
+    metrics_path: /minio/metrics/v3
+    scheme: http
+    static_configs:
+    - targets: ['ubuntu-server:9000']
