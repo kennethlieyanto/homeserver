@@ -46,6 +46,10 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Ansible run playbook
-        run: just play
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+        run: |
+          echo "$ANSIBLE_VAULT_PASSWORD" > .vault_pass
+          just play
+          rm .vault_pass
