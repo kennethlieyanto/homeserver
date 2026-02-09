@@ -39,5 +39,6 @@ backup_ssh_host: kennethl-ws
 backup_ssh_port: 22
 backup_ssh_user: kennethl
 backup_ssh_remote_path: /home/kennethl/docker-volume-backup/
+backup_notification_level: info
 nginx_backup_filename: nginx-proxy-manager-backup
 actual_budget_backup_filename: actual-budget-backup
