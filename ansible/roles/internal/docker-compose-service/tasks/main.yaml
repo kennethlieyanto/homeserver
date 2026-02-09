@@ -9,7 +9,40 @@
     src: "docker-services/{{ service_name }}/"
     dest: "{{ docker_services_base_path }}/{{ service_name }}/"
     mode: "0644"
+    exclude:
+      - ".env"
+      - ".backup.env"
   register: compose_files
+
+- name: Check if .env template exists for {{ service_name }}
+  ansible.builtin.stat:
+    path: "{{ role_path }}/templates/{{ service_name }}.env.j2"
+  register: env_template_stat
+  delegate_to: localhost
+  become: false
+
+- name: Generate .env file from template for {{ service_name }}
+  ansible.builtin.template:
+    src: "{{ service_name }}.env.j2"
+    dest: "{{ docker_services_base_path }}/{{ service_name }}/.env"
+    mode: "0600"
+  when: env_template_stat.stat.exists
+  register: env_file
+
+- name: Check if .backup.env template exists for {{ service_name }}
+  ansible.builtin.stat:
+    path: "{{ role_path }}/templates/{{ service_name }}.backup.env.j2"
+  register: backup_env_template_stat
+  delegate_to: localhost
+  become: false
+
+- name: Generate .backup.env file from template for {{ service_name }}
+  ansible.builtin.template:
+    src: "{{ service_name }}.backup.env.j2"
+    dest: "{{ docker_services_base_path }}/{{ service_name }}/.backup.env"
+    mode: "0600"
+  when: backup_env_template_stat.stat.exists
+  register: backup_env_file
 
 - name: Deploy {{ service_name }} with docker-compose
   community.docker.docker_compose_v2:

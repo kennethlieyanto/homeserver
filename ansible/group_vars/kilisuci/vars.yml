@@ -1,0 +1,43 @@
+---
+# Docker Compose service configurations
+# Non-secret variables - safe to commit
+
+# MinIO Configuration
+minio_root_user: minioadmin
+minio_data_path: ./minio-data
+
+# Immich Configuration
+immich_version: release
+immich_upload_location: /mnt/82efbdbb-ad71-4d99-8ec3-b1fb9ef2fc71/Immich/library
+immich_db_data_location: /mnt/82efbdbb-ad71-4d99-8ec3-b1fb9ef2fc71/Immich/postgres
+immich_db_username: postgres
+immich_db_database_name: immich
+
+# Paperless Configuration
+paperless_url: https://paperless.tail.kennethlieyanto.com
+paperless_timezone: Asia/Jakarta
+paperless_ocr_language: eng
+paperless_ocr_languages: ind
+paperless_uid: 1000
+paperless_gid: 1000
+
+# n8n Configuration
+n8n_domain_name: taile7003c.ts.net
+n8n_subdomain: ubuntu-server
+n8n_timezone: Asia/Jakarta
+n8n_ssl_email: kennethlieyanto99@gmail.com
+
+# Grafana Configuration
+grafana_data_path: ./grafana-data
+
+# Prometheus Configuration
+prometheus_data_path: ./prometheus-data
+
+# Backup Configuration
+backup_cron_expression: '"0 20 * * *"'
+backup_ssh_host: kennethl-ws
+backup_ssh_port: 22
+backup_ssh_user: kennethl
+backup_ssh_remote_path: /home/kennethl/docker-volume-backup/
+nginx_backup_filename: '"nginx-proxy-manager-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}"'
+actual_budget_backup_filename: '"actual-budget-backup-%Y-%m-%dT%H-%M-%S.{{ .Extension }}"'

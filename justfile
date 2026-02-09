@@ -3,6 +3,9 @@ docker-service-dir := "docker-services"
 default:
     @just --choose
 
+edit-secret:
+    uv run ansible-vault edit ansible/group_vars/kilisuci/vault.yml
+
 setup:
     uv sync && uv run ansible-galaxy install -r ansible/requirements.yaml
 
