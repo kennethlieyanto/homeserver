@@ -1,0 +1,11 @@
+all:
+  children:
+    staging:
+      hosts:
+        ubuntu-01:
+          ansible_host: 192.168.18.100
+
+    prod:
+      hosts:
+        ubuntu-02:
+          ansible_host: 192.168.18.101
