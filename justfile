@@ -6,11 +6,11 @@ default:
 edit-secret:
     ansible-vault edit ansible/group_vars/kilisuci/vault.yml
 
-setup:
+setup-ansible:
     ansible-galaxy install -r ansible/requirements.yaml
 
-play:
-    ansible-playbook -i ansible/inventory/production.yaml ansible/site.yaml 
+play-stage:
+    ansible-playbook -i ansible/inventory.yaml ansible/site.yaml --limit staging
 
 lint:
     ansible-lint

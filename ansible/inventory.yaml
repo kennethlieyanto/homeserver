@@ -4,8 +4,12 @@ all:
       hosts:
         ubuntu-01:
           ansible_host: 192.168.18.100
+          ansible_user: kennethl
+          ansible_become_password: bodyflicker
 
     prod:
       hosts:
         ubuntu-02:
           ansible_host: 192.168.18.101
+          ansible_user: kennethl
+          ansible_become_password: bodyflicker

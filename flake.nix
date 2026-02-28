@@ -20,6 +20,7 @@
           ansible
           ansible-lint
           git-cliff
+          fzf
         ];
 
         shellHook = ''

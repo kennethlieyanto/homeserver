@@ -1,0 +1,31 @@
+- name: Setup docker
+  hosts: all
+  become: true
+  roles:
+    - geerlingguy.docker
+
+- name: Add user to docker group
+  hosts: all
+  become: true
+
+  vars:
+    username: kennethl
+
+  tasks:
+    - name: Add {{ username }} to docker group
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: docker
+        append: yes
+# - name: Manage Docker Compose Services
+#   hosts: ubuntu-server
+#   become: true
+#
+#   tasks:
+#     - name: Deploy selected services
+#       include_role:
+#         name: internal/docker-compose-service
+#       vars:
+#         service_name: "{{ item }}"
+#       loop: "{{ services_to_deploy }}"
+#       when: services_to_deploy is defined
