@@ -4,16 +4,16 @@ default:
     @just --choose
 
 edit-secret:
-    uv run ansible-vault edit ansible/group_vars/kilisuci/vault.yml
+    ansible-vault edit ansible/group_vars/kilisuci/vault.yml
 
 setup:
-    uv sync && uv run ansible-galaxy install -r ansible/requirements.yaml
+    ansible-galaxy install -r ansible/requirements.yaml
 
 play:
-    uv run ansible-playbook -i ansible/inventory/production.yaml ansible/site.yaml 
+    ansible-playbook -i ansible/inventory/production.yaml ansible/site.yaml 
 
 lint:
-    uv run ansible-lint
+    ansible-lint
 
 start service:
     cd {{ docker-service-dir }}/{{ service }} && docker compose up -d
